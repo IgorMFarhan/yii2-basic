@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $content string */
 
 
-if (Yii::$app->controller->action->id === 'login') {
+if (Yii::$app->controller->action->id === 'skip') {
 
     if (class_exists('backend\assets\AppAsset')) {
         backend\assets\AppAsset::register($this);
@@ -55,6 +55,13 @@ if (Yii::$app->controller->action->id === 'login') {
     <?php $this->endPage() ?>
 
 <?php 
+} else if (Yii::$app->controller->action->id === 'login') {
+
+    echo $this->render(
+        'main-login',
+        ['content' => $content]
+    );
+
 } else  {
 
         echo $this->render(

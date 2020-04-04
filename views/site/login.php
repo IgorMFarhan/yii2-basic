@@ -22,7 +22,7 @@ $fieldOptions2 = [
 <div class="login-box">    
     <div class="login-box-body">
         <div class="text-center" style="padding-top:15px">
-            <?= Html::img('@web/img/jawara.png', ['alt'=>'Jawara', 'style'=>'width: 50%; margin-bottom: 15px']);?>
+            <?= Html::img('@web/img/jawara.png', ['alt'=>'Jawara', 'style'=>'width: 200px; margin-bottom: 15px']);?>
         </div>
         <h4 class="login-box-msg">Flexi Working Arrangement</h4>
 
@@ -47,7 +47,7 @@ $fieldOptions2 = [
 
         <div style="padding-top:20px; padding-bottom:20px">       
 
-        <?= Html::a('Don\'t have an account? Sign up!', ['/user/registration/register'],['class'=>'btn btn-default btn-block btn-flat']) ?>
+        <?= Html::a('Buat Akun Karyawan Outsource', ['/user/registration/register'],['class'=>'btn btn-default btn-block btn-flat']) ?>
 
         </div>
     </div>
