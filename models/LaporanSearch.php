@@ -17,7 +17,7 @@ class LaporanSearch extends Laporan
     public function rules()
     {
         return [
-            [['id', 'nik_id', 'host', 'lokasi_id', 'kondisi_id'], 'integer'],
+            [['id', 'user_id', 'host_id', 'lokasi_id', 'kondisi_id'], 'integer'],
             [['keterangan', 'submit_date'], 'safe'],
         ];
     }
@@ -59,8 +59,8 @@ class LaporanSearch extends Laporan
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'nik_id' => $this->nik_id,
-            'host' => $this->host,
+            'user_id' => $this->user_id,
+            'host_id' => $this->host_id,
             'lokasi_id' => $this->lokasi_id,
             'kondisi_id' => $this->kondisi_id,
             'submit_date' => $this->submit_date,

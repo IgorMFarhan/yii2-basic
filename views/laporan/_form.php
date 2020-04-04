@@ -8,26 +8,25 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="laporan-form">
-
+<div class="laporan-form box box-primary">
     <?php $form = ActiveForm::begin(); ?>
+    <div class="box-body table-responsive">
 
-    <?= $form->field($model, 'nik_id')->textInput() ?>
+        <?= $form->field($model, 'user_id')->textInput() ?>
 
-    <?= $form->field($model, 'host')->textInput() ?>
+        <?= $form->field($model, 'host_id')->textInput() ?>
 
-    <?= $form->field($model, 'lokasi_id')->textInput() ?>
+        <?= $form->field($model, 'lokasi_id')->textInput() ?>
 
-    <?= $form->field($model, 'kondisi_id')->textInput() ?>
+        <?= $form->field($model, 'kondisi_id')->textInput() ?>
 
-    <?= $form->field($model, 'keterangan')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'keterangan')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'submit_date')->textInput() ?>
+        <?= $form->field($model, 'submit_date')->textInput() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
-
+    <div class="box-footer">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-flat']) ?>
+    </div>
     <?php ActiveForm::end(); ?>
-
 </div>

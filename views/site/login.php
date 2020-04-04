@@ -38,7 +38,7 @@ $fieldOptions2 = [
 
         <div style="padding-top:10px">
 
-        <?= Html::submitButton('Login',
+        <?= Html::submitButton('Masuk',
             ['class' => 'btn btn-primary btn-block','name' => 'login-button', 'tabindex' => '4']) 
         ?>
         <?php ActiveForm::end(); ?>   

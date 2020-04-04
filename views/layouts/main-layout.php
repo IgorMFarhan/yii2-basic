@@ -1,6 +1,11 @@
 <?php
 use backend\assets\AppAsset;
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
+use app\widgets\Alert;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -17,11 +22,14 @@ dmstr\web\AdminLteAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="rakap-page">
+<body class="main-layout">
 
 <?php $this->beginBody() ?>
 
-    <?= $content ?>
+<div class="container">
+   
+   <?= $content ?>
+</div>
 
 <?php $this->endBody() ?>
 </body>

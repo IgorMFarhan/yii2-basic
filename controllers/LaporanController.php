@@ -67,6 +67,7 @@ class LaporanController extends Controller
         $model = new Laporan();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -107,6 +108,83 @@ class LaporanController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionCheckin()
+    {       
+        $user = Yii::$app->user->identity->id;
+        $today = date('Y-m-d');
+        $query = Laporan::find()->where(['user_id' => $user])
+                                ->andWhere(['like','submit_date',$today]);
+                                
+        $count = $query->count();
+
+        if($count > 0 ){
+            return $this->render('checkin');
+        } else {
+            return $this->redirect(['lokasi']);
+        }      
+        
+    }
+
+    public function actionLokasi()
+    {       
+        return $this->render('lokasi');
+    }
+
+    public function actionChecklokasi($lokasi)
+    {       
+        return $this->redirect(['kondisi','lokasi'=>$lokasi]);
+    }
+
+    public function actionKondisi()
+    {       
+        return $this->render('kondisi');
+    }
+
+    public function actionCheckkondisi($lokasi,$kondisi)
+    {       
+        return $this->redirect(['lingkungan','lokasi'=>$lokasi,'kondisi'=>$kondisi]);
+    }
+
+    public function actionLingkungan()
+    {       
+        $model = new Laporan();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->user_id = Yii::$app->user->identity->id;
+            $model->host_id = Yii::$app->user->identity->host_loker_id;
+
+            $ha = $model->keluarga;
+            $hi = $model->lingkungan;
+            $hu = $model->sakit;
+            $request = Yii::$app->request;
+            $model->lokasi_id = $request->get('lokasi');
+            $model->kondisi_id = $request->get('kondisi');
+
+            $model->keterangan = 'Keluarga : '.$ha. ' // Lingkungan : '. $hi. ' // Sakit : '.$hu;
+
+            $model->submit_date = date('Y-m-d H:i:s');
+
+            
+
+            $model->save(false);
+
+     
+
+            
+            return $this->redirect(['checkin']);
+        }
+
+        return $this->render('lingkungan', [
+            'model' => $model,
+        ]);
+        
+    }
+
+    public function actionChecklingkungan($id)
+    {       
+        return $this->redirect(['checkin']);
     }
 
     /**

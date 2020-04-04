@@ -9,34 +9,30 @@ use yii\widgets\DetailView;
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Laporans', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
 ?>
-<div class="laporan-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+<div class="laporan-view box box-primary">
+    <div class="box-header">
+        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-flat']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
+            'class' => 'btn btn-danger btn-flat',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'nik_id',
-            'host',
-            'lokasi_id',
-            'kondisi_id',
-            'keterangan',
-            'submit_date',
-        ],
-    ]) ?>
-
+    </div>
+    <div class="box-body table-responsive no-padding">
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                'id',
+                'user_id',
+                'host_id',
+                'lokasi_id',
+                'kondisi_id',
+                'keterangan',
+                'submit_date',
+            ],
+        ]) ?>
+    </div>
 </div>

@@ -10,33 +10,29 @@ use yii\grid\GridView;
 $this->title = 'Laporans';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="laporan-index">
+<div class="laporan-index box box-primary">
+    <div class="box-header with-border">
+        <?= Html::a('Create Laporan', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
+    </div>
+    <div class="box-body table-responsive no-padding">
+        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'layout' => "{items}\n{summary}\n{pager}",
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-    <h1><?= Html::encode($this->title) ?></h1>
+                'id',
+                'user_id',
+                'host_id',
+                'lokasi_id',
+                'kondisi_id',
+                'keterangan',
+                'submit_date',
 
-    <p>
-        <?= Html::a('Create Laporan', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'nik_id',
-            'host',
-            'lokasi_id',
-            'kondisi_id',
-            //'keterangan',
-            //'submit_date',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
-
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+    </div>
 </div>

@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "laporan".
  *
  * @property int $id
- * @property int $nik_id
+ * @property int $user_id
  * @property int $host_id
  * @property int $lokasi_id
  * @property int $kondisi_id
@@ -22,6 +22,9 @@ use Yii;
  */
 class Laporan extends \yii\db\ActiveRecord
 {
+    public $keluarga;
+    public $lingkungan;
+    public $sakit;
     /**
      * {@inheritdoc}
      */
@@ -36,14 +39,16 @@ class Laporan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nik_id', 'host_id', 'lokasi_id', 'kondisi_id', 'submit_date'], 'required'],
-            [['nik_id', 'host_id', 'lokasi_id', 'kondisi_id'], 'integer'],
+            [['user_id', 'host_id', 'lokasi_id', 'kondisi_id', 'submit_date'], 'required'],
+            [['user_id', 'host_id', 'lokasi_id', 'kondisi_id'], 'integer'],
+            [['keluarga', 'lingkungan'], 'required'],
+            [['keluarga', 'lingkungan', 'sakit'], 'string'],
             [['submit_date'], 'safe'],
             [['keterangan'], 'string', 'max' => 255],
             [['host_id'], 'exist', 'skipOnError' => true, 'targetClass' => HostLoker::className(), 'targetAttribute' => ['host_id' => 'id']],
             [['kondisi_id'], 'exist', 'skipOnError' => true, 'targetClass' => Kondisi::className(), 'targetAttribute' => ['kondisi_id' => 'id']],
             [['lokasi_id'], 'exist', 'skipOnError' => true, 'targetClass' => LokasiBekerja::className(), 'targetAttribute' => ['lokasi_id' => 'id']],
-            [['nik_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['nik_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -54,12 +59,15 @@ class Laporan extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nik_id' => 'Nik ID',
+            'user_id' => 'Nik ID',
             'host_id' => 'Host ID',
             'lokasi_id' => 'Lokasi ID',
             'kondisi_id' => 'Kondisi ID',
             'keterangan' => 'Keterangan',
             'submit_date' => 'Submit Date',
+            'keluarga' => 'Keluarga',
+            'lingkungan' => 'Lingkungan',
+            'Sakit' => 'Sakit',
         ];
     }
 
@@ -100,6 +108,6 @@ class Laporan extends \yii\db\ActiveRecord
      */
     public function getNik()
     {
-        return $this->hasOne(User::className(), ['id' => 'nik_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }
