@@ -10,6 +10,19 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
+
+if (Yii::$app->controller->action->id === 'login') { 
+    /**
+     * Do not use this code in your template. Remove it. 
+     * Instead, use the code  $this->layout = '//main-login'; in your controller.
+     */
+        echo $this->render(
+            'main-login',
+            ['content' => $content]
+        );
+    } else {
+
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -47,7 +60,7 @@ AppAsset::register($this);
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    'Logout (' . Yii::$app->user->identity->nik . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
@@ -59,6 +72,7 @@ AppAsset::register($this);
     ?>
 
     <div class="container">
+   
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
@@ -79,3 +93,6 @@ AppAsset::register($this);
 </body>
 </html>
 <?php $this->endPage() ?>
+
+<?php } ?>
+
