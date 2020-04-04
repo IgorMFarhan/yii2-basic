@@ -12,7 +12,7 @@ $kondisi = $request->get('kondisi');
 /* @var $this yii\web\View */
 /* @var $model app\models\Laporan */
 
-$this->title = 'Create Laporan';
+$this->title = 'Lapor Lingkungan';
 $this->params['breadcrumbs'][] = ['label' => 'Laporans', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="box-body table-responsive">
 
 <h3 style="color:red">SEMANGAT PAGI!!!</h3>
-<h4><?= Yii::$app->user->identity->nama?></h4>
+<h4><?= Yii::$app->user->identity->nama .' ('.Yii::$app->user->identity->nik .')' ?></h4>
 
 
     <div class="callout callout-warning">

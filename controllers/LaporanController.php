@@ -118,11 +118,14 @@ class LaporanController extends Controller
         $today = date('Y-m-d');
         $query = Laporan::find()->where(['user_id' => $user])
                                 ->andWhere(['like','submit_date',$today]);
+        $model = $query->one();
                                 
         $count = $query->count();
 
         if($count > 0 ){
-            return $this->render('checkin');
+            return $this->render('checkin',[
+                'model' => $model,
+            ]);
         } else {
             return $this->redirect(['lokasi']);
         }      
@@ -168,13 +171,8 @@ class LaporanController extends Controller
 
             $model->submit_date = date('Y-m-d H:i:s');
 
-            
-
             $model->save(false);
 
-     
-
-            
             return $this->redirect(['checkin']);
         }
 
@@ -187,6 +185,16 @@ class LaporanController extends Controller
     public function actionChecklingkungan($id)
     {       
         return $this->redirect(['checkin']);
+    }
+
+    public function actionRekap()
+    {       
+        $today = date('Y-m-d');
+        $model = Laporan::find()->where(['like','submit_date',$today]);
+
+        return $this->render('rekap',[
+            'model' => $model,
+        ]);                             
     }
 
     /**

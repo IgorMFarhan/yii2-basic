@@ -7,12 +7,12 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\LaporanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Laporans';
+$this->title = 'Laporan';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="laporan-index box box-primary">
     <div class="box-header with-border">
-        <?= Html::a('Create Laporan', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
+        
     </div>
     <div class="box-body table-responsive no-padding">
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -23,15 +23,30 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
 
-                'id',
-                'user_id',
-                'host_id',
-                'lokasi_id',
-                'kondisi_id',
+                
+                [
+                    'attribute' => 'user_id',
+                    'label' => 'Nama Karyawan',
+                    'value' => 'nik.nama',
+                ], 
+                [
+                    'attribute' => 'host_id',
+                    'label' => 'Lokasi Kerja',
+                    'value' => 'host.host_loker',
+                ], 
+                [
+                    'attribute' => 'lokasi_id',
+                    'label' => 'Lokasi Bekerja',
+                    'value' => 'lokasi.lokasi',
+                ], 
+                [
+                    'attribute' => 'kondisi_id',
+                    'label' => 'Kondisi',
+                    'value' => 'kondisi.kondisi',
+                ],     
+            
                 'keterangan',
                 'submit_date',
-
-                ['class' => 'yii\grid\ActionColumn'],
             ],
         ]); ?>
     </div>
