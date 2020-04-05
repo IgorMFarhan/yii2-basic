@@ -4,65 +4,51 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 
-$vcenter = <<< CSS
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-}
-CSS;
-
-$this->registerCss($vcenter);
-
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Laporan */
 
 $this->title = 'Lapor Loker';
-$this->params['breadcrumbs'][] = ['label' => 'Laporans', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
-<div class="laporan-create">
 
-    <div class="col-lg-6 col-lg-offset-3">
-    <div class="laporan-form box box-primary">
-
-
-
-    
-<div class="box-body table-responsive">
-
-<h3 style="color:red">SEMANGAT PAGI!!!</h3>
-<h4><?= Yii::$app->user->identity->nama .' ('.Yii::$app->user->identity->nik .')' ?></h4>
-
-
+<div class="col-lg-6 col-lg-offset-3">
+   
+    <h3 style="color:red">SEMANGAT PAGI!!!</h3>
+    <h4><?= Yii::$app->user->identity->nama .' ('.Yii::$app->user->identity->nik .')' ?></h4>
     <div class="callout callout-warning">
-      <h4>Anda belum check-in hari ini</h4>
 
-      <p>Silahkan laporkan kondisi kesehatan Anda dan lokasi bekerja hari ini</p>
+            <h4>Anda belum check-in hari ini</h4>
+            <p>Silahkan laporkan kondisi kesehatan Anda dan lokasi bekerja hari ini</p>
+
     </div>
 
-    <div class="kondisi">
-        <h3 class="text-center">Dimana Anda bekerja hari ini?</h3>
+    <h4 class="text-center">Dimana Anda bekerja hari ini?</h4>
+
+    <div class="row"  style="padding-top:10px">
+        <div class="col-lg-6 col-xs-6">
         <?php
-            $wfh = Html::img('@web/lokasi/wfh.png',['alt'=>'WFH', 'style'=>'width: 172px',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ]],
-            );
+            $wfh = Html::img('@web/lokasi/wfh.png',['alt'=>'WFH','class'=>'img-responsive']);
             echo Html::a($wfh, ['laporan/checklokasi','lokasi'=>1]);
-
-            $wfso = Html::img('@web/lokasi/wfso.png',['alt'=>'WFSO', 'style'=>'width: 172px;']);
+        ?>
+        </div>
+        <div class="col-lg-6 col-xs-6">
+        <?php
+            $wfso = Html::img('@web/lokasi/wfso.png',['alt'=>'WFSO','class'=>'img-responsive']);
             echo Html::a($wfso, ['laporan/checklokasi','lokasi'=>2]);
-
-            $wfo = Html::img('@web/lokasi/wfo.png',['alt'=>'WFO', 'style'=>'width: 172px;']);
+        ?>
+        </div>
+        <div class="col-lg-6 col-xs-6" style="padding-top:30px">
+        <?php         
+            $wfo = Html::img('@web/lokasi/wfo.png',['alt'=>'WFO','class'=>'img-responsive']);
             echo Html::a($wfo, ['laporan/checklokasi','lokasi'=>3]);
         ?>
-    </div>
-</div>
-
-</div>
-    </div>
-
+        </div>
+        <div class="col-lg-6 col-xs-6" style="padding-top:30px">
+        <?php         
+            $cuti = Html::img('@web/lokasi/cuti.png',['alt'=>'Cuti','class'=>'img-responsive']);
+            echo Html::a($cuti, ['laporan/checklokasi','lokasi'=>4]);
+        ?>
+        </div>
+    </div>       
+   
 </div>

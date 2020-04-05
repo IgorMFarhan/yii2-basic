@@ -41,7 +41,7 @@ class Laporan extends \yii\db\ActiveRecord
         return [
             [['user_id', 'host_id', 'lokasi_id', 'kondisi_id', 'submit_date'], 'required'],
             [['user_id', 'host_id', 'lokasi_id', 'kondisi_id'], 'integer'],
-            [['keluarga', 'lingkungan'], 'required'],
+            [['keluarga', 'lingkungan', 'sakit'], 'required'],
             [['keluarga', 'lingkungan', 'sakit'], 'string'],
             [['submit_date'], 'safe'],
             [['keterangan'], 'string', 'max' => 255],

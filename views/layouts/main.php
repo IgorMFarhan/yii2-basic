@@ -16,11 +16,14 @@ if (Yii::$app->controller->action->id === 'skip') {
     dmstr\web\AdminLteAsset::register($this);
 
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+    
     ?>
     <?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
     <head>
+        <link rel="shortcut icon" href="@web/img/favicon.png" type="image/x-icon">
+        <link rel="icon" href="@web/img/favicon.png" type="image/x-icon">
         <meta charset="<?= Yii::$app->charset ?>"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
@@ -63,6 +66,8 @@ if (Yii::$app->controller->action->id === 'skip') {
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
     <head>
+        <link rel="shortcut icon" href='<?= Yii::$app->urlManager->baseUrl . '/img/favicon.png'?>' type="image/x-icon">
+        <link rel="icon" href='<?= Yii::$app->urlManager->baseUrl . '/img/favicon.png'?>' type="image/x-icon">
         <meta charset="<?= Yii::$app->charset ?>"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
@@ -81,6 +86,12 @@ if (Yii::$app->controller->action->id === 'skip') {
     <?php $this->endPage() ?>
 
     <?php
+
+} else if (Yii::$app->controller->action->id === 'rekap'){
+    echo $this->render(
+        'main-index',
+        ['content' => $content]
+    );
 
 } else  {
 

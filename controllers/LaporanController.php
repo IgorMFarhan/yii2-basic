@@ -157,17 +157,26 @@ class LaporanController extends Controller
         $model = new Laporan();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->user_id = Yii::$app->user->identity->id;
-            $model->host_id = Yii::$app->user->identity->host_loker_id;
 
-            $ha = $model->keluarga;
-            $hi = $model->lingkungan;
-            $hu = $model->sakit;
             $request = Yii::$app->request;
             $model->lokasi_id = $request->get('lokasi');
             $model->kondisi_id = $request->get('kondisi');
 
-            $model->keterangan = 'Keluarga : '.$ha. ' // Lingkungan : '. $hi. ' // Sakit : '.$hu;
+            $model->user_id = Yii::$app->user->identity->id;
+            $model->host_id = Yii::$app->user->identity->host_loker_id;
+
+            $ha = 'Keluarga : '. $model->keluarga;
+            $hi = ' // Lingkungan : '. $model->lingkungan;
+            $hu = ' // Sakit : '. $model->sakit;
+
+            if($model->sakit == null){
+                $hu = '';
+            }
+
+
+            
+
+            $model->keterangan = $ha. $hi .$hu;
 
             $model->submit_date = date('Y-m-d H:i:s');
 

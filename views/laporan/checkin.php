@@ -13,18 +13,12 @@ $this->title = 'Check-In';
 $this->params['breadcrumbs'][] = ['label' => 'Laporans', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="laporan-create">
-
-    <div class="col-lg-6 col-lg-offset-3">
-    <div class="laporan-form box box-primary">
 
 
-
-    
-<div class="box-body table-responsive">
-
-<h3 style="color:red">SEMANGAT PAGI!!!</h3>
-<h4><?= Yii::$app->user->identity->nama .' ('.Yii::$app->user->identity->nik .')' ?></h4>
+<div class="col-lg-6 col-lg-offset-3">
+ 
+    <h3 style="color:red">SEMANGAT PAGI!!!</h3>
+    <h4><?= Yii::$app->user->identity->nama .' ('.Yii::$app->user->identity->nik .')' ?></h4>
 
 
     <div class="callout callout-info">
@@ -49,7 +43,4 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-</div>
-    </div>
 
-</div>

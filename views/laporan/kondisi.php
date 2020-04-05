@@ -5,58 +5,49 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\bootstrap\Alert;
 
-$request = Yii::$app->request;
-$lokasi = $request->get('lokasi');
-
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Laporan */
 
 $this->title = 'Lapor Kondisi';
-$this->params['breadcrumbs'][] = ['label' => 'Laporans', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
+$request = Yii::$app->request;
+$lokasi = $request->get('lokasi');
+
 ?>
-<div class="laporan-create">
 
-    <div class="col-lg-6 col-lg-offset-3">
-    <div class="laporan-form box box-primary">
-
-
-
-    
-<div class="box-body table-responsive">
-
-<h3 style="color:red">SEMANGAT PAGI!!!</h3>
-<h4><?= Yii::$app->user->identity->nama .' ('.Yii::$app->user->identity->nik .')' ?></h4>
-
-
+<div class="col-lg-6 col-lg-offset-3">
+   
+    <h3 style="color:red">SEMANGAT PAGI!!!</h3>
+    <h4><?= Yii::$app->user->identity->nama .' ('.Yii::$app->user->identity->nik .')' ?></h4>
     <div class="callout callout-warning">
-      <h4>Anda belum check-in hari ini</h4>
 
-      <p>Silahkan laporkan kondisi kesehatan Anda dan lokasi bekerja hari ini</p>
+            <h4>Anda belum check-in hari ini</h4>
+            <p>Silahkan laporkan kondisi kesehatan Anda dan lokasi bekerja hari ini</p>
+
     </div>
 
-    <div class="kondisi">
-        <h3 class="text-center">Bagaimana kondisi Anda hari ini?</h3>
+    <h4 class="text-center">Bagaimana kondisi Anda hari ini?</h4>
+
+    <div class="row " style="padding-top:10px">
+        <div class="col-lg-6 col-xs-6">
         <?php
-            $sakit = Html::img('@web/kondisi/sakit.png',['alt'=>'sakit', 'style'=>'width: 172px',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ]],
-            );
+            $sakit = Html::img('@web/kondisi/sakit.png',['alt'=>'sakit','class'=>'img-responsive',]);
             echo Html::a($sakit, ['laporan/checkkondisi','lokasi'=>$lokasi,'kondisi'=>1]);
-
-            $kurangfit = Html::img('@web/kondisi/kurangfit.png',['alt'=>'kurangfit', 'style'=>'width: 172px;']);
+        ?>
+        </div>
+        <div class="col-lg-6 col-xs-6">
+        <?php
+            $kurangfit = Html::img('@web/kondisi/kurangfit.png',['alt'=>'kurangfit','class'=>'img-responsive']);
             echo Html::a($kurangfit, ['laporan/checkkondisi','lokasi'=>$lokasi,'kondisi'=>2]);
-
-            $sehat = Html::img('@web/kondisi/sehat.png',['alt'=>'sehat', 'style'=>'width: 172px;']);
+        ?>
+        </div>
+        <div class="col-lg-12 col-xs-12">
+        <?php         
+            $sehat = Html::img('@web/kondisi/sehat.png',['alt'=>'sehat','class'=>'img-responsive']);
             echo Html::a($sehat, ['laporan/checkkondisi','lokasi'=>$lokasi,'kondisi'=>3]);
         ?>
-    </div>
+        </div>
+    </div>       
+   
 </div>
 
-</div>
-    </div>
-
-</div>

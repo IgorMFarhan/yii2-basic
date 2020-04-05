@@ -19,7 +19,7 @@ dmstr\web\AdminLteAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="login-page">
+<body class="rekap-index" style="background-color:#ecf0f5">
 
 <?php $this->beginBody() ?>
 
