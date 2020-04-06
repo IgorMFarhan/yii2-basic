@@ -35,7 +35,6 @@ $kondisi = $request->get('kondisi');
                         'template' => "{label} \n<div class=\"col-lg-9\">{input}</div>\n<div class=\"col-sm-offset-3 col-lg-9\">{error}\n{hint}</div>",
                         'labelOptions' => ['class' => 'col-lg-3 control-label'],
                     ],
-
                 ]); ?>
         <div class="box-body table-responsive">
 

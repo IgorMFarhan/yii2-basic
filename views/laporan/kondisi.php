@@ -41,7 +41,7 @@ $lokasi = $request->get('lokasi');
             echo Html::a($kurangfit, ['laporan/checkkondisi','lokasi'=>$lokasi,'kondisi'=>2]);
         ?>
         </div>
-        <div class="col-lg-12 col-xs-12">
+        <div class="col-lg-6 col-lg-offset-3 col-xs-6 col-xs-offset-3">
         <?php         
             $sehat = Html::img('@web/kondisi/sehat.png',['alt'=>'sehat','class'=>'img-responsive']);
             echo Html::a($sehat, ['laporan/checkkondisi','lokasi'=>$lokasi,'kondisi'=>3]);

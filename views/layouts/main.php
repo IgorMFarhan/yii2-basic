@@ -87,7 +87,7 @@ if (Yii::$app->controller->action->id === 'skip') {
 
     <?php
 
-} else if (Yii::$app->controller->action->id === 'rekap'){
+} else if (Yii::$app->controller->action->id === 'rekap' || Yii::$app->controller->action->id === 'index'){
     echo $this->render(
         'main-index',
         ['content' => $content]

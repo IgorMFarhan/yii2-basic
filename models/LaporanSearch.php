@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Laporan;
@@ -12,18 +13,18 @@ use app\models\Laporan;
 class LaporanSearch extends Laporan
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'user_id', 'host_id', 'lokasi_id', 'kondisi_id'], 'integer'],
+            [['id', 'user_id', 'unit1_id', 'unit2_id', 'lokasi_id', 'kondisi_id'], 'integer'],
             [['keterangan', 'submit_date'], 'safe'],
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function scenarios()
     {
@@ -46,6 +47,7 @@ class LaporanSearch extends Laporan
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
         ]);
 
         $this->load($params);
@@ -60,13 +62,16 @@ class LaporanSearch extends Laporan
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'host_id' => $this->host_id,
+            'unit1_id' => $this->unit1_id,
+            'unit2_id' => $this->unit2_id,
             'lokasi_id' => $this->lokasi_id,
             'kondisi_id' => $this->kondisi_id,
-            'submit_date' => $this->submit_date,
+          
+            
         ]);
 
         $query->andFilterWhere(['like', 'keterangan', $this->keterangan]);
+        $query->andFilterWhere(['like', 'submit_date', $this->submit_date]);
 
         return $dataProvider;
     }

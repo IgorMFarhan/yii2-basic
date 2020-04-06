@@ -9,6 +9,11 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use app\models\Unit2;
+use app\models\Lokasi;
+use app\models\Kondisi;
+use yii\helpers\ArrayHelper;
+
 
 /**
  * LaporanController implements the CRUD actions for Laporan model.
@@ -40,9 +45,21 @@ class LaporanController extends Controller
         $searchModel = new LaporanSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $unit2 = Unit2::find()->all();
+        $unit2 = ArrayHelper::map($unit2,'id','unit2');
+
+        $lokasi = Lokasi::find()->all();
+        $lokasi = ArrayHelper::map($lokasi,'id','lokasi');
+
+        $kondisi = Kondisi::find()->all();
+        $kondisi = ArrayHelper::map($kondisi,'id','kondisi');
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'unit2' => $unit2,
+            'lokasi' => $lokasi,
+            'kondisi' => $kondisi,
         ]);
     }
 
@@ -163,8 +180,9 @@ class LaporanController extends Controller
             $model->kondisi_id = $request->get('kondisi');
 
             $model->user_id = Yii::$app->user->identity->id;
-            $model->host_id = Yii::$app->user->identity->host_loker_id;
-
+            $model->unit1_id = Yii::$app->user->identity->unit1_id;
+            $model->unit2_id = Yii::$app->user->identity->unit2_id;
+           
             $ha = 'Keluarga : '. $model->keluarga;
             $hi = ' // Lingkungan : '. $model->lingkungan;
             $hu = ' // Sakit : '. $model->sakit;
@@ -172,10 +190,6 @@ class LaporanController extends Controller
             if($model->sakit == null){
                 $hu = '';
             }
-
-
-            
-
             $model->keterangan = $ha. $hi .$hu;
 
             $model->submit_date = date('Y-m-d H:i:s');
@@ -198,13 +212,24 @@ class LaporanController extends Controller
 
     public function actionRekap()
     {       
-        $today = date('Y-m-d');
-        $model = Laporan::find()->where(['like','submit_date',$today]);
+        $model = new Laporan();
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $date = $model->today;
+            
+        }  else {
+            $date = date('Y-m-d');
+            
+        }
 
         return $this->render('rekap',[
             'model' => $model,
-        ]);                             
+            'date' => $date,
+        ]);   
+                                  
     }
+
 
     /**
      * Finds the Laporan model based on its primary key value.

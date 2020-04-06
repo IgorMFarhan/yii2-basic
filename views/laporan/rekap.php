@@ -6,11 +6,11 @@ use yii\widgets\ListView;
 use yii\grid\GridView;
 use yii\data\ActiveDataProvider;
 use app\models\Laporan;
+use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
+
 
 $this->title = 'Rekap Harian';
-
-
-$todays =date("d-m-Y");
 
 
 $reg = 175;
@@ -22,78 +22,76 @@ $skb = 57;
 $tsm = 57;
 $tot = 615;
 
-$today = date('Y-m-d');
 
-
-$regs = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>1]);
+$regs = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>1]);
 $reg1 = $reg - $regs->count();
-$reg2 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>1,'lokasi_id'=>1])->count();
-$reg3 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>1,'lokasi_id'=>2])->count();
-$reg4 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>1,'lokasi_id'=>3])->count();
-$reg5 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>1,'lokasi_id'=>4])->count();
-$reg6 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>1,'kondisi_id'=>1])->count();
-$reg7 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>1,'kondisi_id'=>2])->count();
-$reg8 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>1,'kondisi_id'=>3])->count();
+$reg2 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>1,'lokasi_id'=>1])->count();
+$reg3 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>1,'lokasi_id'=>2])->count();
+$reg4 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>1,'lokasi_id'=>3])->count();
+$reg5 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>1,'lokasi_id'=>4])->count();
+$reg6 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>1,'kondisi_id'=>1])->count();
+$reg7 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>1,'kondisi_id'=>2])->count();
+$reg8 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>1,'kondisi_id'=>3])->count();
 
-$bdgs = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>2]);
+$bdgs = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>2]);
 $bdg1 = $bdg - $bdgs->count();
-$bdg2 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>2,'lokasi_id'=>1])->count();
-$bdg3 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>2,'lokasi_id'=>2])->count();
-$bdg4 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>2,'lokasi_id'=>3])->count();
-$bdg5 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>2,'lokasi_id'=>4])->count();
-$bdg6 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>2,'kondisi_id'=>1])->count();
-$bdg7 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>2,'kondisi_id'=>2])->count();
-$bdg8 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>2,'kondisi_id'=>3])->count();
+$bdg2 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>2,'lokasi_id'=>1])->count();
+$bdg3 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>2,'lokasi_id'=>2])->count();
+$bdg4 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>2,'lokasi_id'=>3])->count();
+$bdg5 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>2,'lokasi_id'=>4])->count();
+$bdg6 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>2,'kondisi_id'=>1])->count();
+$bdg7 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>2,'kondisi_id'=>2])->count();
+$bdg8 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>2,'kondisi_id'=>3])->count();
 
-$wbbs = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>3]);
+$wbbs = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>3]);
 $wbb1 = $wbb - $wbbs->count();
-$wbb2 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>3,'lokasi_id'=>1])->count();
-$wbb3 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>3,'lokasi_id'=>2])->count();
-$wbb4 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>3,'lokasi_id'=>3])->count();
-$wbb5 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>3,'lokasi_id'=>4])->count();
-$wbb6 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>3,'kondisi_id'=>1])->count();
-$wbb7 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>3,'kondisi_id'=>2])->count();
-$wbb8 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>3,'kondisi_id'=>3])->count();
+$wbb2 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>3,'lokasi_id'=>1])->count();
+$wbb3 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>3,'lokasi_id'=>2])->count();
+$wbb4 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>3,'lokasi_id'=>3])->count();
+$wbb5 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>3,'lokasi_id'=>4])->count();
+$wbb6 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>3,'kondisi_id'=>1])->count();
+$wbb7 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>3,'kondisi_id'=>2])->count();
+$wbb8 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>3,'kondisi_id'=>3])->count();
 
-$cbns = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>4]);
+$cbns = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>4]);
 $cbn1 = $cbn - $cbns->count();
-$cbn2 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>4,'lokasi_id'=>1])->count();
-$cbn3 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>4,'lokasi_id'=>2])->count();
-$cbn4 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>4,'lokasi_id'=>3])->count();
-$cbn5 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>4,'lokasi_id'=>4])->count();
-$cbn6 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>4,'kondisi_id'=>1])->count();
-$cbn7 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>4,'kondisi_id'=>2])->count();
-$cbn8 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>4,'kondisi_id'=>3])->count();
+$cbn2 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>4,'lokasi_id'=>1])->count();
+$cbn3 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>4,'lokasi_id'=>2])->count();
+$cbn4 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>4,'lokasi_id'=>3])->count();
+$cbn5 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>4,'lokasi_id'=>4])->count();
+$cbn6 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>4,'kondisi_id'=>1])->count();
+$cbn7 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>4,'kondisi_id'=>2])->count();
+$cbn8 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>4,'kondisi_id'=>3])->count();
 
-$kwas = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>5]);
+$kwas = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>5]);
 $kwa1 = $kwa - $kwas->count();
-$kwa2 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>5,'lokasi_id'=>1])->count();
-$kwa3 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>5,'lokasi_id'=>2])->count();
-$kwa4 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>5,'lokasi_id'=>3])->count();
-$kwa5 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>5,'lokasi_id'=>4])->count();
-$kwa6 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>5,'kondisi_id'=>1])->count();
-$kwa7 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>5,'kondisi_id'=>2])->count();
-$kwa8 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>5,'kondisi_id'=>3])->count();
+$kwa2 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>5,'lokasi_id'=>1])->count();
+$kwa3 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>5,'lokasi_id'=>2])->count();
+$kwa4 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>5,'lokasi_id'=>3])->count();
+$kwa5 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>5,'lokasi_id'=>4])->count();
+$kwa6 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>5,'kondisi_id'=>1])->count();
+$kwa7 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>5,'kondisi_id'=>2])->count();
+$kwa8 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>5,'kondisi_id'=>3])->count();
 
-$skbs = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>6]);
+$skbs = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>6]);
 $skb1 = $skb - $skbs->count();
-$skb2 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>6,'lokasi_id'=>1])->count();
-$skb3 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>6,'lokasi_id'=>2])->count();
-$skb4 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>6,'lokasi_id'=>3])->count();
-$skb5 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>6,'lokasi_id'=>4])->count();
-$skb6 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>6,'kondisi_id'=>1])->count();
-$skb7 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>6,'kondisi_id'=>2])->count();
-$skb8 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>6,'kondisi_id'=>3])->count();
+$skb2 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>6,'lokasi_id'=>1])->count();
+$skb3 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>6,'lokasi_id'=>2])->count();
+$skb4 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>6,'lokasi_id'=>3])->count();
+$skb5 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>6,'lokasi_id'=>4])->count();
+$skb6 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>6,'kondisi_id'=>1])->count();
+$skb7 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>6,'kondisi_id'=>2])->count();
+$skb8 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>6,'kondisi_id'=>3])->count();
 
-$tsms = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>7]);
+$tsms = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>7]);
 $tsm1 = $tsm - $tsms->count();
-$tsm2 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>7,'lokasi_id'=>1])->count();
-$tsm3 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>7,'lokasi_id'=>2])->count();
-$tsm4 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>7,'lokasi_id'=>3])->count();
-$tsm5 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>7,'lokasi_id'=>4])->count();
-$tsm6 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>7,'kondisi_id'=>1])->count();
-$tsm7 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>7,'kondisi_id'=>2])->count();
-$tsm8 = Laporan::find()->where(['like','submit_date',$today])->andWhere(['host_id'=>7,'kondisi_id'=>3])->count();
+$tsm2 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>7,'lokasi_id'=>1])->count();
+$tsm3 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>7,'lokasi_id'=>2])->count();
+$tsm4 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>7,'lokasi_id'=>3])->count();
+$tsm5 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>7,'lokasi_id'=>4])->count();
+$tsm6 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>7,'kondisi_id'=>1])->count();
+$tsm7 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>7,'kondisi_id'=>2])->count();
+$tsm8 = Laporan::find()->where(['like','submit_date',$date])->andWhere(['unit2_id'=>7,'kondisi_id'=>3])->count();
 
 $tot1 = $reg1+$bdg1+$wbb1+$cbn1+$kwa1+$skb1+$tsm1;
 $tot2 = $reg2+$bdg2+$wbb2+$cbn2+$kwa2+$skb2+$tsm2;
@@ -110,9 +108,35 @@ $tot8 = $reg8+$bdg8+$wbb8+$cbn8+$kwa8+$skb8+$tsm8;
 
 <div class="laporan-index " style="margin: 3% 7% 7% 7%">
     <div class="text-center">
-        <h2>LAPORAN HARIAN HUMAN RESOURCE TREG III</h2>
-        <h4>Tanggal : <?= $todays ?></h4> 
-    </div>
+        <h2 style="margin-bottom:30px">LAPORAN HARIAN HUMAN RESOURCE TREG III</h2>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 col-xs-12">
+                <div class="row">
+
+                    <div class="col-lg-9">
+                    <?php $form = ActiveForm::begin(); 
+                    echo $form->field($model,'today')->widget(DatePicker::className(),[
+                            'options' => [
+                                'placeholder' => 'Silahkan pilih tanggal',
+                            ],
+                            'pluginOptions' => [
+                                'autoclose'=>true,
+                                'format' => 'yyyy-mm-dd', 
+                            ],                   
+
+                        ])->label(false); ?>
+                    </div>
+                    <div class="col-lg-3 ">        
+                    <?php
+                    echo Html::submitButton('Cari', ['class' => 'btn btn-success btn-block']);    
+                    ActiveForm::end(); ?>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        
+
+   
 
     <div class="box box-primary" style="margin-top:20px">
             <!-- /.box-header -->

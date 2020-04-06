@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Laporan */
@@ -14,7 +15,9 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'user_id')->textInput() ?>
 
-        <?= $form->field($model, 'host_id')->textInput() ?>
+        <?= $form->field($model, 'unit1_id')->textInput() ?>
+
+        <?= $form->field($model, 'unit2_id')->textInput() ?>
 
         <?= $form->field($model, 'lokasi_id')->textInput() ?>
 
@@ -22,7 +25,16 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'keterangan')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'submit_date')->textInput() ?>
+        <?= $form->field($model,'today')->widget(DatePicker::className(),[
+                    'options' => [
+                        'placeholder' => 'Enter birth date ...'
+                    ],
+                    'pluginOptions' => [
+                        'autoclose'=>true,
+                        'format' => 'yyyy-mm-dd'
+                    ]
+                ]); 
+        ?>
 
     </div>
     <div class="box-footer">

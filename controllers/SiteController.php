@@ -67,6 +67,28 @@ class SiteController extends Controller
         return $this->redirect(['laporan/checkin']);
     }
 
+    public function actionSignup()
+    {
+        $model = new User();
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->nik = $this->nik;
+            $model->unit1_id = $this->unit1_id;
+            $model->unit2_id = $this->unit2_id;
+            $model->kota_id = $this->kota_id;
+            $model->generateAuthKey();
+            $model->nama = $this->nama;
+            
+            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            return $this->redirect(['site/login']);
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Login action.
      *
@@ -127,5 +149,10 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
     }
 }

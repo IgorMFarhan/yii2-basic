@@ -19,11 +19,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'user_id') ?>
 
-    <?= $form->field($model, 'host_id') ?>
+    <?= $form->field($model, 'unit1_id') ?>
+
+    <?= $form->field($model, 'unit2_id') ?>
 
     <?= $form->field($model, 'lokasi_id') ?>
 
-    <?= $form->field($model, 'kondisi_id') ?>
+    <?php // echo $form->field($model, 'kondisi_id') ?>
 
     <?php // echo $form->field($model, 'keterangan') ?>
 

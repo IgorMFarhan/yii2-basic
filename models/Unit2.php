@@ -5,21 +5,21 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "lokasi_bekerja".
+ * This is the model class for table "unit2".
  *
  * @property int $id
- * @property string $lokasi
+ * @property string $unit2
  *
- * @property Laporan[] $laporans
+ * @property User[] $users
  */
-class LokasiBekerja extends \yii\db\ActiveRecord
+class Unit2 extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'lokasi_bekerja';
+        return 'unit2';
     }
 
     /**
@@ -28,8 +28,8 @@ class LokasiBekerja extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lokasi'], 'required'],
-            [['lokasi'], 'string', 'max' => 64],
+            [['unit2'], 'required'],
+            [['unit2'], 'string', 'max' => 255],
         ];
     }
 
@@ -40,17 +40,17 @@ class LokasiBekerja extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'lokasi' => 'Lokasi',
+            'unit2' => 'Unit2',
         ];
     }
 
     /**
-     * Gets query for [[Laporans]].
+     * Gets query for [[Users]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getLaporans()
+    public function getUsers()
     {
-        return $this->hasMany(Laporan::className(), ['lokasi_id' => 'id']);
+        return $this->hasMany(User::className(), ['unit2_id' => 'id']);
     }
 }

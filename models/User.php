@@ -14,13 +14,15 @@ use yii\web\IdentityInterface;
  * @property int $id
  * @property int|null $nik
  * @property string|null $nama
- * @property int|null $host_loker_id
- * @property int|null $lokasi_gedung_id
+ * @property string $auth_key
+ * @property int|null $unit1_id
+ * @property int|null $unit2_id
  * @property int|null $kota_id
  *
- * @property HostLoker $hostLoker
+ * @property Laporan[] $laporans
+ * @property Unit2 $unit2
  * @property Kota $kota
- * @property LokasiGedung $lokasiGedung
+ * @property Unit1 $unit1
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -35,7 +37,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-
+    
     public function behaviors()
     {
         return [
@@ -45,11 +47,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['nik', 'host_loker_id', 'lokasi_gedung_id', 'kota_id'], 'integer'],
+            [['nik', 'unit1_id', 'unit2_id', 'kota_id'], 'integer'],
+            [['auth_key'], 'required'],
             [['nama'], 'string', 'max' => 255],
-            [['host_loker_id'], 'exist', 'skipOnError' => true, 'targetClass' => HostLoker::className(), 'targetAttribute' => ['host_loker_id' => 'id']],
+            [['auth_key'], 'string', 'max' => 32],
+            [['unit2_id'], 'exist', 'skipOnError' => true, 'targetClass' => Unit2::className(), 'targetAttribute' => ['unit2_id' => 'id']],
             [['kota_id'], 'exist', 'skipOnError' => true, 'targetClass' => Kota::className(), 'targetAttribute' => ['kota_id' => 'id']],
-            [['lokasi_gedung_id'], 'exist', 'skipOnError' => true, 'targetClass' => LokasiGedung::className(), 'targetAttribute' => ['lokasi_gedung_id' => 'id']],
+            [['unit1_id'], 'exist', 'skipOnError' => true, 'targetClass' => Unit1::className(), 'targetAttribute' => ['unit1_id' => 'id']],
         ];
     }
 
@@ -104,31 +108,40 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->getPrimaryKey();
     }
 
-    
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'nik' => 'Nomor Induk Karyawan',
+            'nik' => 'Nik',
             'nama' => 'Nama',
-            'host_loker_id' => 'Host',
-            'lokasi_gedung_id' => 'Lokasi Gedung',
-            'kota_id' => 'Kota',
+            'auth_key' => 'Auth Key',
+            'unit1_id' => 'Unit1 ID',
+            'unit2_id' => 'Unit2 ID',
+            'kota_id' => 'Kota ID',
         ];
     }
 
+
+
     /**
-     * Gets query for [[HostLoker]].
+     * Gets query for [[Laporans]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getHostLoker()
+    public function getLaporans()
     {
-        return $this->hasOne(HostLoker::className(), ['id' => 'host_loker_id']);
+        return $this->hasMany(Laporan::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Unit2]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUnit2()
+    {
+        return $this->hasOne(Unit2::className(), ['id' => 'unit2_id']);
     }
 
     /**
@@ -142,12 +155,12 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Gets query for [[LokasiGedung]].
+     * Gets query for [[Unit1]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getLokasiGedung()
+    public function getUnit1()
     {
-        return $this->hasOne(LokasiGedung::className(), ['id' => 'lokasi_gedung_id']);
+        return $this->hasOne(Unit1::className(), ['id' => 'unit1_id']);
     }
 }

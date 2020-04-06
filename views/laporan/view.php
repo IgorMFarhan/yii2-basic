@@ -27,7 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'attributes' => [
                 'id',
                 'user_id',
-                'host_id',
+                'unit1_id',
+                'unit2_id',
                 'lokasi_id',
                 'kondisi_id',
                 'keterangan',
