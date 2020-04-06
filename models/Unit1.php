@@ -28,8 +28,8 @@ class Unit1 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lokasi_gedung'], 'required'],
-            [['lokasi_gedung'], 'string', 'max' => 255],
+            [['unit1'], 'required'],
+            [['unit1'], 'string', 'max' => 255],
         ];
     }
 
@@ -40,7 +40,7 @@ class Unit1 extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'lokasi_gedung' => 'Lokasi Gedung',
+            'unit1' => 'Unit1',
         ];
     }
 

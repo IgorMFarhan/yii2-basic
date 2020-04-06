@@ -8,7 +8,8 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\User;
+use app\models\Unit2;
 
 class SiteController extends Controller
 {
@@ -22,7 +23,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error','signup'],
                         'allow' => true,
                     ],
                     [
@@ -70,15 +71,17 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new User();
+        $modelunit = new Unit2();
 
         if ($model->load(Yii::$app->request->post())) {
 
-            $model->nik = $this->nik;
-            $model->unit1_id = $this->unit1_id;
-            $model->unit2_id = $this->unit2_id;
-            $model->kota_id = $this->kota_id;
-            $model->generateAuthKey();
-            $model->nama = $this->nama;
+            // $model->nik = $this->nik;
+            // $model->unit1_id = $this->unit1_id;
+            // $model->unit2_id = $this->unit2_id;
+            // $model->kota_id = $this->kota_id;
+            $model->auth_key = Yii::$app->security->generateRandomString();
+            // $model->nama = $this->nama;
+            $model->save();
             
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
             return $this->redirect(['site/login']);
@@ -86,6 +89,7 @@ class SiteController extends Controller
 
         return $this->render('signup', [
             'model' => $model,
+            'modelunit' => $modelunit,
         ]);
     }
 
@@ -149,10 +153,5 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
-    }
-
-    public function generateAuthKey()
-    {
-        $this->auth_key = Yii::$app->security->generateRandomString();
     }
 }

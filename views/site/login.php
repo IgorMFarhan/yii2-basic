@@ -47,7 +47,7 @@ $fieldOptions2 = [
 
         <div style="padding-top:20px; padding-bottom:20px">       
 
-        <?= Html::a('Buat Akun Karyawan Outsource', '#',['class'=>'btn btn-default btn-block btn-flat']) ?>
+        <?= Html::a('Buat Akun Karyawan Outsource', ['signup'],['class'=>'btn btn-default btn-block btn-flat']) ?>
 
         </div>
     </div>

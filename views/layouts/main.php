@@ -58,7 +58,7 @@ if (Yii::$app->controller->action->id === 'skip') {
     <?php $this->endPage() ?>
 
 <?php 
-} else if (Yii::$app->controller->action->id === 'login') {
+} else if (Yii::$app->controller->action->id === 'login' || Yii::$app->controller->action->id === 'signup') {
 
     dmstr\web\AdminLteAsset::register($this);
     ?>

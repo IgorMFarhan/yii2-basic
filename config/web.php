@@ -62,7 +62,7 @@ $config = [
         'rules' => [
             [
                 'allow' => true,
-                'actions' => ['login','error'],
+                'actions' => ['login','error','signup'],
             ],
             [
                 'allow' => true,
