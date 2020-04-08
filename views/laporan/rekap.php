@@ -102,6 +102,15 @@ $tot6 = $reg6+$bdg6+$wbb6+$cbn6+$kwa6+$skb6+$tsm6;
 $tot7 = $reg7+$bdg7+$wbb7+$cbn7+$kwa7+$skb7+$tsm7;
 $tot8 = $reg8+$bdg8+$wbb8+$cbn8+$kwa8+$skb8+$tsm8;
 
+$per1 = round(($tot1/$tot*100),2) .'%';
+$per2 = round(($tot2/($tot2+$tot3+$tot4+$tot5)*100),2) .'%';
+$per3 = round(($tot3/($tot2+$tot3+$tot4+$tot5)*100),2) .'%';
+$per4 = round(($tot4/($tot2+$tot3+$tot4+$tot5)*100),2) .'%';
+$per5 = round(($tot5/($tot2+$tot3+$tot4+$tot5)*100),2) .'%';
+$per6 = round(($tot6/($tot6+$tot7+$tot8)*100),2) .'%';
+$per7 = round(($tot7/($tot6+$tot7+$tot8)*100),2) .'%';
+$per8 = round(($tot8/($tot6+$tot7+$tot8)*100),2) .'%';
+
 
 
 ?>
@@ -251,8 +260,8 @@ $tot8 = $reg8+$bdg8+$wbb8+$cbn8+$kwa8+$skb8+$tsm8;
                     <td><?= $tsm8 ?></td>
                 </tr>
                 <tr>                    
-                    <th colspan="2">JUMLAH</th>
-                    <th><?= $tot ?></th>
+                    <th style="text-align:left" colspan="2">JUMLAH</th>
+                    <th ><?= $tot ?></th>
                     <th><?= $tot1 ?></th>
                     <th><?= $tot2 ?></th>
                     <th><?= $tot3 ?></th>
@@ -261,6 +270,19 @@ $tot8 = $reg8+$bdg8+$wbb8+$cbn8+$kwa8+$skb8+$tsm8;
                     <th><?= $tot6 ?></th>
                     <th><?= $tot7 ?></th>
                     <th><?= $tot8 ?></th>
+                </tr>
+
+                <tr>                    
+                    <th style="text-align:left" colspan="3">PERSENTASE</th>
+                    <th><?= $per1 ?></th>
+                    <th><?= $per2 ?></th>
+                    <th><?= $per3 ?></th>
+                    <th><?= $per4 ?></th>
+                    <th><?= $per5 ?></th>
+                    <th><?= $per6 ?></th>
+                    <th><?= $per7 ?></th>
+                    <th><?= $per8 ?></th>
+                    
                 </tr>
                 
               </table>
