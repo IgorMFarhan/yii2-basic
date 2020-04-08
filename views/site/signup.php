@@ -27,7 +27,11 @@ $fieldOptions1 = [
         <h4 class="login-box-msg">Buat Akun Baru</h4>
 
 
-        <?php $form = ActiveForm::begin(['id' => 'signup-form', 'enableClientValidation' => false]); ?>
+        <?php $form = ActiveForm::begin([
+                'id' => 'signup-form', 
+                'enableClientValidation' => true,
+                'enableAjaxValidation' => false,
+            ]); ?>
 
         <?= $form
             ->field($model, 'nik', $fieldOptions1)
@@ -57,7 +61,7 @@ $fieldOptions1 = [
             ->textInput(['placeholder' => 'jika lokasi gedung tidak ada']) ?>
 
         <?= $form
-            ->field($model, 'unit2_id', $fieldOptions1)
+            ->field($model, 'kota_id', $fieldOptions1)
             ->label(false)
             ->dropdownList(ArrayHelper::map(Kota::find()->all(),'id','nama_kota'),
                 ['prompt'=>'pilih kota']); ?>

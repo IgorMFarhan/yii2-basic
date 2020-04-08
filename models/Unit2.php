@@ -28,7 +28,7 @@ class Unit2 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['unit2'], 'required'],
+            // [['unit2'], 'required'],
             [['unit2'], 'string', 'max' => 255],
         ];
     }

@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\User;
 use app\models\Unit2;
+use yii\web\HttpException;
 
 class SiteController extends Controller
 {
@@ -74,7 +75,10 @@ class SiteController extends Controller
         $modelunit = new Unit2();
 
         if ($model->load(Yii::$app->request->post())) {
-
+            
+            if (!$model->validate()) {
+                return null;
+            }
             // $model->nik = $this->nik;
             // $model->unit1_id = $this->unit1_id;
             // $model->unit2_id = $this->unit2_id;

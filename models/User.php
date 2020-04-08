@@ -16,12 +16,13 @@ use yii\web\IdentityInterface;
  * @property string $auth_key
  * @property int|null $unit1_id
  * @property int|null $unit2_id
- * @property int|null $kota_id
+ * @property int $status_karyawan
  *
+ * @property Diarium[] $diaria
  * @property Laporan[] $laporans
  * @property Unit2 $unit2
- * @property Kota $kota
  * @property Unit1 $unit1
+ * @property StatusKaryawan $statusKaryawan
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -41,13 +42,16 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['nik', 'unit1_id', 'unit2_id', 'kota_id'], 'integer'],
-            [['auth_key'], 'required'],
+            [['nik', 'unit1_id', 'unit2_id', 'status_karyawan'], 'integer'],
+            ['nik', 'unique', 'message' => 'NIK/No. HP sudah terdaftar'],
+            [['nik','nama', 'unit1_id', 'unit2_id', 'kota_id','auth_key'], 'required'],
+            [['nik'], 'unique'],
             [['nama'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['unit2_id'], 'exist', 'skipOnError' => true, 'targetClass' => Unit2::className(), 'targetAttribute' => ['unit2_id' => 'id']],
-            [['kota_id'], 'exist', 'skipOnError' => true, 'targetClass' => Kota::className(), 'targetAttribute' => ['kota_id' => 'id']],
             [['unit1_id'], 'exist', 'skipOnError' => true, 'targetClass' => Unit1::className(), 'targetAttribute' => ['unit1_id' => 'id']],
+            [['status_karyawan'], 'exist', 'skipOnError' => true, 'targetClass' => StatusKaryawan::className(), 'targetAttribute' => ['status_karyawan' => 'id']],
+
         ];
     }
 
@@ -112,7 +116,7 @@ class User extends ActiveRecord implements IdentityInterface
             'auth_key' => 'Auth Key',
             'unit1_id' => 'Unit1 ID',
             'unit2_id' => 'Unit2 ID',
-            'kota_id' => 'Kota ID',
+            'status_karyawan' => 'Status Karyawan',
         ];
     }
 
@@ -139,16 +143,6 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Gets query for [[Kota]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getKota()
-    {
-        return $this->hasOne(Kota::className(), ['id' => 'kota_id']);
-    }
-
-    /**
      * Gets query for [[Unit1]].
      *
      * @return \yii\db\ActiveQuery
@@ -156,5 +150,15 @@ class User extends ActiveRecord implements IdentityInterface
     public function getUnit1()
     {
         return $this->hasOne(Unit1::className(), ['id' => 'unit1_id']);
+    }
+
+    /**
+     * Gets query for [[StatusKaryawan]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatusKaryawan()
+    {
+        return $this->hasOne(StatusKaryawan::className(), ['id' => 'status_karyawan']);
     }
 }
