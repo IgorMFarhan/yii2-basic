@@ -103,13 +103,24 @@ $tot7 = $reg7+$bdg7+$wbb7+$cbn7+$kwa7+$skb7+$tsm7;
 $tot8 = $reg8+$bdg8+$wbb8+$cbn8+$kwa8+$skb8+$tsm8;
 
 $per1 = round(($tot1/$tot*100),2) .'%';
-$per2 = round(($tot2/($tot2+$tot3+$tot4+$tot5)*100),2) .'%';
-$per3 = round(($tot3/($tot2+$tot3+$tot4+$tot5)*100),2) .'%';
-$per4 = round(($tot4/($tot2+$tot3+$tot4+$tot5)*100),2) .'%';
-$per5 = round(($tot5/($tot2+$tot3+$tot4+$tot5)*100),2) .'%';
-$per6 = round(($tot6/($tot6+$tot7+$tot8)*100),2) .'%';
-$per7 = round(($tot7/($tot6+$tot7+$tot8)*100),2) .'%';
-$per8 = round(($tot8/($tot6+$tot7+$tot8)*100),2) .'%';
+
+$totl = $tot2+$tot3+$tot4+$tot5;
+$totk = $tot6+$tot7+$tot8;
+
+if ($totl == 0){
+    $totl = 1;
+}
+if ($totk == 0){
+    $totk = 1;
+}
+
+$per2 = round(($tot2/($totl)*100),2) .'%';
+$per3 = round(($tot3/($totl)*100),2) .'%';
+$per4 = round(($tot4/($totl)*100),2) .'%';
+$per5 = round(($tot5/($totl)*100),2) .'%';
+$per6 = round(($tot6/($totk)*100),2) .'%';
+$per7 = round(($tot7/($totk)*100),2) .'%';
+$per8 = round(($tot8/($totk)*100),2) .'%';
 
 
 
